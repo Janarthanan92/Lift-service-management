@@ -26,6 +26,8 @@ const initialLifts = [
 
                         export default function App() {
                           const [page, setPage] = useState("Dashboard");
+const [session, setSession] = useState(null);
+const [loginEmail, setLoginEmail] = useState("");
                             
 const [lifts, setLifts] = useState(() => {
   try {
