@@ -28,6 +28,35 @@ const initialLifts = [
                           const [page, setPage] = useState("Dashboard");
 const [session, setSession] = useState(null);
 const [loginEmail, setLoginEmail] = useState("");
+const [loginPassword, setLoginPassword] = useState("");
+const [loginError, setLoginError] = useState("");
+const [loginLoading, setLoginLoading] = useState(false);
+
+async function handleLogin(e) {
+  e.preventDefault();
+  setLoginError("");
+  setLoginLoading(true);
+
+  if (!supabase) {
+    setLoginError("Supabase is not configured. Please contact the administrator.");
+    setLoginLoading(false);
+    return;
+  }
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: loginEmail,
+    password: loginPassword,
+  });
+
+  setLoginLoading(false);
+
+  if (error) {
+    setLoginError(error.message);
+    return;
+  }
+
+  setSession(data.session);
+}
                             
 const [lifts, setLifts] = useState(() => {
   try {
