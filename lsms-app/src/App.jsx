@@ -26,8 +26,25 @@ const initialLifts = [
 
                         export default function App() {
                           const [page, setPage] = useState("Dashboard");
-                            const [lifts, setLifts] = useState(initialLifts);
-                              const [jobs, setJobs] = useState(initialJobs);
+                            
+const [lifts, setLifts] = useState(() => {
+  try {
+    const saved = localStorage.getItem("lsms-lifts");
+    return saved ? JSON.parse(saved) : initialLifts;
+  } catch {
+    return initialLifts;
+  }
+});
+
+const [jobs, setJobs] = useState(() => {
+  try {
+    const saved = localStorage.getItem("lsms-jobs");
+    return saved ? JSON.parse(saved) : initialJobs;
+  } catch {
+    return initialJobs;
+  }
+});
+
                                 const [checks, setChecks] = useState({});
                                   const [liftForm, setLiftForm] = useState(false);
                                     const [jobForm, setJobForm] = useState(false);
