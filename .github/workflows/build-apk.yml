@@ -1,3 +1,4 @@
+
 name: Build LSMS Android APK
 
 on:
@@ -6,11 +7,16 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - uses: actions/setup-node@v4
         with:
@@ -21,7 +27,20 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      
+      - name: Update dependency lockfile
+        working-directory: lsms-app
+        run: npm install --package-lock-only
+
+      - name: Save updated lockfile
+        run: |
+          if ! git diff --quiet -- lsms-app/package-lock.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add lsms-app/package-lock.json
+            git commit -m "Update LSMS dependency lockfile"
+            git push
+          fi
+
       - name: Build LSMS
         working-directory: lsms-app
         run: |
@@ -29,7 +48,6 @@ jobs:
           npm run build
           if [ ! -d android ]; then npx cap add android; fi
           npx cap sync android
-
 
       - name: Build Android APK
         working-directory: lsms-app/android
