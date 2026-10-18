@@ -61,6 +61,22 @@ useEffect(() => {
   }
 }, [jobs]);
 
+useEffect(() => {
+  try {
+    localStorage.setItem("lsms-lifts", JSON.stringify(lifts));
+  } catch (error) {
+    console.error("Could not save lifts:", error);
+  }
+}, [lifts]);
+
+useEffect(() => {
+  try {
+    localStorage.setItem("lsms-jobs", JSON.stringify(jobs));
+  } catch (error) {
+    console.error("Could not save jobs:", error);
+  }
+}, [jobs]);
+
                                 const [checks, setChecks] = useState({});
                                   const [liftForm, setLiftForm] = useState(false);
                                     const [jobForm, setJobForm] = useState(false);
