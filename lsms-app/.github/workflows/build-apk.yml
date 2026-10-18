@@ -29,8 +29,9 @@ on:
                                                                                                                       - name: Build web app
                                                                                                                               working-directory: lsms-app
                                                                                                                                       run: |
-                                                                                                                                                npm ci
-                                                                                                                                                          npm run build
+                                                                                                                                                
+- run: npm install @supabase/supabase-js
+- run: npm ci
                                                                                                                                                                     npx cap sync android
 
                                                                                                                                                                           - name: Build debug APK
