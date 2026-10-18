@@ -42,12 +42,15 @@ jobs:
           fi
 
       - name: Build LSMS
-        working-directory: lsms-app
-        run: |
-          npm ci
-          npm run build
-          if [ ! -d android ]; then npx cap add android; fi
-          npx cap sync android
+    working-directory: lsms-app
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
+    run: |
+      npm ci
+      npm run build
+      if [ ! -d android ]; then npx cap add android; fi
+      npx cap sync android
 
       - name: Build Android APK
         working-directory: lsms-app/android
