@@ -31,6 +31,21 @@ const [loginEmail, setLoginEmail] = useState("");
 const [loginPassword, setLoginPassword] = useState("");
 const [loginError, setLoginError] = useState("");
 const [loginLoading, setLoginLoading] = useState(false);
+useEffect(() => {
+  if (!supabase) return;
+
+  supabase.auth.getSession().then(({ data }) => {
+    setSession(data.session);
+  });
+
+  const {
+    data: { subscription },
+  } = supabase.auth.onAuthStateChange((_event, newSession) => {
+    setSession(newSession);
+  });
+
+  return () => subscription.unsubscribe();
+}, []);
 
 async function handleLogin(e) {
   e.preventDefault();
