@@ -21,13 +21,15 @@ jobs:
           distribution: temurin
           java-version: 21
 
+      
       - name: Build LSMS
         working-directory: lsms-app
-        run: 
+        run: |
           npm ci
-          
+          npm run build
           if [ ! -d android ]; then npx cap add android; fi
           npx cap sync android
+
 
       - name: Build Android APK
         working-directory: lsms-app/android
