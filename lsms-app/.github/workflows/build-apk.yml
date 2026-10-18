@@ -27,7 +27,7 @@ on:
                                                                                                                 java-version: 21
 
                                                                                                                       - name: Build web app
-                                                                                                                              working-directory: lsms-app
+                                                                                                                              working-directory: Lsms-app
                                                                                                                                       run: |
                                                                                                                                                 
 - run: npm install @supabase/supabase-js
@@ -35,7 +35,7 @@ on:
                                                                                                                                                                     npx cap sync android
 
                                                                                                                                                                           - name: Build debug APK
-                                                                                                                                                                                  working-directory: lsms-app/android
+                                                                                                                                                                                  working-directory: Lsms-app/android
                                                                                                                                                                                           run: |
                                                                                                                                                                                                     chmod +x gradlew
                                                                                                                                                                                                               ./gradlew assembleDebug
@@ -44,7 +44,7 @@ on:
                                                                                                                                                                                                                             uses: actions/upload-artifact@v4
                                                                                                                                                                                                                                     with:
                                                                                                                                                                                                                                               name: LSMS-Android-APK
-                                                                                                                                                                                                                                                        path: lsms-app/android/app/build/outputs/apk/debug/app-debug.apk
+                                                                                                                                                                                                                                                        path: Lsms-app/android/app/build/outputs/apk/debug/app-debug.apk
                                                                                                                                                                                                                                                                   if-no-files-found: error
                                                                                                                                                                                                                                                                             retention-days: 7
 
