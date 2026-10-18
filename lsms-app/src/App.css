@@ -1,0 +1,157 @@
+
+:root {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+    color: #192b43;
+      background: #f4f7fb;
+        font-synthesis: none;
+        }
+        * { box-sizing: border-box; }
+        body { margin: 0; min-width: 320px; }
+        button, input, select, textarea { font: inherit; }
+        button { cursor: pointer; }
+        .app { min-height: 100vh; }
+        .topbar {
+          height: 72px; background: #fff; border-bottom: 1px solid #e4eaf1;
+            display: flex; align-items: center; gap: 12px; padding: 0 28px;
+              position: sticky; top: 0; z-index: 5;
+              }
+              .brand-mark {
+                width: 40px; height: 40px; border-radius: 12px; background: #155eef;
+                  color: white; display: grid; place-items: center; font-weight: 800; font-size: 24px;
+                  }
+                  .brand strong { display: block; font-size: 18px; }
+                  .brand strong span { color: #155eef; }
+                  .brand small { color: #78879a; font-size: 12px; }
+                  .user-badge {
+                    margin-left: auto; width: 38px; height: 38px; border-radius: 50%;
+                      display: grid; place-items: center; background: #e9efff; color: #155eef; font-weight: 700;
+                      }
+                      .workspace { display: flex; }
+                      .sidebar {
+                        width: 225px; flex-shrink: 0; padding: 28px 14px;
+                          border-right: 1px solid #e4eaf1; background: #fff; min-height: calc(100vh - 72px);
+                          }
+                          .nav-label, .eyebrow, .welcome-tag {
+                            color: #8795a8; font-size: 10px; font-weight: 800; letter-spacing: 1.3px;
+                            }
+                            .nav-label { padding: 0 12px; }
+                            .nav-item {
+                              border: 0; background: transparent; color: #63738a; width: 100%;
+                                padding: 12px; margin: 3px 0; border-radius: 9px; text-align: left;
+                                  display: flex; align-items: center; gap: 12px; font-weight: 600;
+                                  }
+                                  .nav-item span { width: 22px; font-size: 18px; }
+                                  .nav-item.selected { background: #edf3ff; color: #155eef; }
+                                  .side-note {
+                                    margin: 42px 4px 0; background: #f4f7fb; padding: 15px;
+                                      border-radius: 12px; font-size: 13px;
+                                      }
+                                      .side-note p { color: #78879a; line-height: 1.5; }
+                                      .main { flex: 1; min-width: 0; padding: 30px; max-width: 1600px; }
+                                      .page-heading {
+                                        display: flex; align-items: center; justify-content: space-between;
+                                          gap: 14px; margin-bottom: 24px;
+                                          }
+                                          .eyebrow { margin: 0 0 8px; }
+                                          h1 { font-size: 29px; margin: 0; letter-spacing: -0.8px; }
+                                          .subtitle { color: #78879a; margin: 8px 0 0; font-size: 14px; }
+                                          .primary {
+                                            border: 0; background: #155eef; color: #fff; border-radius: 8px;
+                                              padding: 11px 16px; font-weight: 700; font-size: 13px;
+                                              }
+                                              .primary:hover { background: #1049c7; }
+                                              .welcome {
+                                                padding: 25px; background: #172f55; color: white; border-radius: 15px;
+                                                  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+                                                    margin-bottom: 20px;
+                                                    }
+                                                    .welcome-tag { color: #b6ceff; }
+                                                    .welcome h2 { margin: 8px 0; font-size: 23px; }
+                                                    .welcome p:last-child { margin-bottom: 0; color: #d5e0f3; font-size: 13px; }
+                                                    .welcome-icon { font-size: 50px; color: #d5e0f3; }
+                                                    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; margin-bottom: 20px; }
+                                                    .stat-card, .panel {
+                                                      background: #fff; border: 1px solid #e4eaf1; border-radius: 12px;
+                                                      }
+                                                      .stat-card { padding: 18px; min-width: 0; }
+                                                      .stat-top { display: flex; justify-content: space-between; gap: 5px; color: #78879a; font-size: 12px; }
+                                                      .stat-top b { color: #155eef; font-size: 18px; }
+                                                      .stat-value { display: block; font-size: 29px; margin-top: 14px; }
+                                                      .panel { padding: 22px; margin-bottom: 20px; }
+                                                      .panel-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+                                                      .panel h2, .panel-heading h2 { font-size: 17px; margin: 0; }
+                                                      .panel-heading p { color: #8795a8; font-size: 12px; margin: 6px 0 0; }
+                                                      .text-button { border: 0; background: transparent; color: #155eef; font-weight: 700; }
+                                                      .table-wrap { width: 100%; overflow-x: auto; }
+                                                      table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+                                                      th { color: #8795a8; background: #f8fafc; font-size: 10px; text-transform: uppercase; letter-spacing: .5px; }
+                                                      th, td { padding: 13px 12px; border-bottom: 1px solid #edf0f5; white-space: nowrap; }
+                                                      td { color: #53647a; }
+                                                      td strong { color: #253750; }
+                                                      .status { display: inline-block; padding: 5px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; }
+                                                      .status.good { background: #e7f8ef; color: #16804a; }
+                                                      .status.working { background: #e9f1ff; color: #155eef; }
+                                                      .status.waiting { background: #fff3df; color: #a46608; }
+                                                      .actions { display: flex; align-items: center; gap: 7px; }
+                                                      .actions select, .standalone-select {
+                                                        border: 1px solid #dbe3ed; border-radius: 7px; background: #fff;
+                                                          padding: 7px; color: #53647a; font-size: 11px;
+                                                          }
+                                                          .small-button { background: #edf3ff; border: 0; color: #155eef; border-radius: 6px; padding: 7px; font-size: 11px; }
+                                                          .overview-row { display: flex; justify-content: space-between; padding: 13px 0; border-bottom: 1px solid #edf0f5; font-size: 13px; color: #63738a; }
+                                                          .overview-row:last-child { border-bottom: 0; }
+                                                          .overview-row strong { color: #253750; }
+                                                          .form { display: grid; gap: 14px; }
+                                                          .form h2 { margin-bottom: 4px; }
+                                                          .form label, .field-label { display: grid; gap: 7px; color: #53647a; font-size: 12px; font-weight: 700; }
+                                                          .form input, .form select, .notes {
+                                                            width: 100%; border: 1px solid #dbe3ed; border-radius: 8px; padding: 11px;
+                                                              color: #253750; background: white;
+                                                              }
+                                                              .form input:focus, .form select:focus, .notes:focus { outline: 2px solid #c7d9ff; border-color: #155eef; }
+                                                              .checklist { margin: 15px 0 22px; }
+                                                              .check-row { display: flex; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid #edf0f5; font-size: 13px; }
+                                                              .check-row input { width: 18px; height: 18px; accent-color: #155eef; }
+                                                              .check-row span { flex: 1; }
+                                                              .check-row small { color: #8795a8; }
+                                                              .standalone-select { margin: 12px 0; min-width: 220px; font-size: 13px; }
+                                                              .notes { min-height: 100px; margin: 10px 0 16px; resize: vertical; }
+                                                              .empty { color: #78879a; padding: 20px 0; }
+                                                              .report-stats { margin-top: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+                                                              .report-detail { margin-top: 24px; padding: 20px; border-radius: 10px; background: #f4f7fb; font-size: 13px; }
+                                                              .report-detail h2 { margin-bottom: 16px; }
+                                                              footer { text-align: center; color: #8795a8; font-size: 11px; padding: 12px; }
+                                                              .mobile-nav { display: none; }
+
+                                                              @media (max-width: 850px) {
+                                                                .sidebar { display: none; }
+                                                                  .main { padding: 20px 14px 30px; }
+                                                                    .topbar { padding: 0 15px; height: 64px; }
+                                                                      .mobile-nav {
+                                                                          display: flex; justify-content: space-between; gap: 3px; overflow-x: auto;
+                                                                              background: white; border: 1px solid #e4eaf1; border-radius: 11px;
+                                                                                  padding: 6px; margin-bottom: 22px;
+                                                                                    }
+                                                                                      .mobile-nav button {
+                                                                                          display: flex; flex-direction: column; align-items: center; gap: 4px;
+                                                                                              flex: 1; min-width: 53px; padding: 8px 3px; border: 0;
+                                                                                                  background: transparent; color: #78879a; border-radius: 8px;
+                                                                                                    }
+                                                                                                      .mobile-nav button span { font-size: 18px; }
+                                                                                                        .mobile-nav button small { font-size: 9px; }
+                                                                                                          .mobile-nav button.mobile-active { color: #155eef; background: #edf3ff; }
+                                                                                                            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+                                                                                                              .stat-card { padding: 14px; }
+                                                                                                                .stat-value { font-size: 25px; }
+                                                                                                                  .welcome { padding: 20px; }
+                                                                                                                    .welcome h2 { font-size: 20px; }
+                                                                                                                      .welcome-icon { font-size: 35px; }
+                                                                                                                        .panel { padding: 16px; }
+                                                                                                                          .page-heading { align-items: flex-start; }
+                                                                                                                            h1 { font-size: 25px; }
+                                                                                                                            }
+                                                                                                                            @media print {
+                                                                                                                              .topbar, .sidebar, .mobile-nav, .page-heading, .primary, footer { display: none !important; }
+                                                                                                                                body, .main { background: white; padding: 0; }
+                                                                                                                                  .panel { border: 0; }
+                                                                                                                                  
