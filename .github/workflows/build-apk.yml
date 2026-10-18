@@ -24,8 +24,9 @@ jobs:
       - name: Build LSMS
         working-directory: lsms-app
         run: |
-          npm ci
-          npm run build
+          - run: npm install @supabase/supabase-js
+- run: npm ci
+          
           if [ ! -d android ]; then npx cap add android; fi
           npx cap sync android
 
