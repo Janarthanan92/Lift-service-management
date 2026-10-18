@@ -28,21 +28,21 @@ jobs:
           java-version: 21
 
       - name: Update dependency lockfile
-        working-directory: lsms_app
+        working-directory: lsms-app
         run: npm install --package-lock-only
 
       - name: Save updated lockfile
         run: |
-          if ! git diff --quiet -- lsms_app/package-lock.json; then
+          if ! git diff --quiet -- lsms-app/package-lock.json; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add lsms_app/package-lock.json
+            git add lsms-app/package-lock.json
             git commit -m "Update LSMS dependency lockfile"
             git push
           fi
 
       - name: Build LSMS
-        working-directory: lsms_app
+        working-directory: lsms-app
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
@@ -53,7 +53,7 @@ jobs:
           npx cap sync android
 
       - name: Build Android APK
-        working-directory: lsms_app/android
+        working-directory: lsms-app/android
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
@@ -61,5 +61,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: LSMS-Android-APK
-          path: lsms_app/android/app/build/outputs/apk/debug/app-debug.apk
+          path: lsms-app/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
