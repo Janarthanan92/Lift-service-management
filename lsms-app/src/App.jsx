@@ -170,8 +170,48 @@ useEffect(() => {
                                                                                                                                                                           ["Reports", "▧"],
                                                                                                                                                                             ];
 
-                                                                                                                                                                              return (
-                                                                                                                                                                                  <div className="app">
+                                                                                                                                                                              
+if (!session) {
+  return (
+    <main className="main">
+      <section className="panel">
+        <h1>Lift Dynamics LSMS</h1>
+        <h2>Sign in</h2>
+
+        <form onSubmit={handleLogin} className="form">
+          <label>
+            Email address
+            <input
+              type="email"
+              required
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
+            />
+          </label>
+
+          <label>
+            Password
+            <input
+              type="password"
+              required
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
+            />
+          </label>
+
+          {loginError && <p>{loginError}</p>}
+
+          <button className="primary" type="submit" disabled={loginLoading}>
+            {loginLoading ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
+      </section>
+    </main>
+  );
+}
+
+return (
+  <div className="app">
                                                                                                                                                                                         <header className="topbar">
                                                                                                                                                                                                 <div className="brand-mark">L</div>
                                                                                                                                                                                                         <div className="brand">
