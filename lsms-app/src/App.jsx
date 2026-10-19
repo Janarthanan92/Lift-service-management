@@ -134,17 +134,57 @@ useEffect(() => {
                                               const pending = jobs.filter(j => j.status === "Pending").length;
                                                 const active = jobs.filter(j => j.status === "In progress").length;
 
-                                                  function addLift(e) {
-                                                      e.preventDefault();
-                                                          if (!newLift.customer.trim() || !newLift.location.trim()) return;
-                                                              setLifts([...lifts, {
-                                                                    id: `LFT-${String(lifts.length + 1).padStart(3, "0")}`,
-                                                                          ...newLift,
-                                                                                status: "Active",
-                                                                                    }]);
-                                                                                        setNewLift({ customer: "", location: "", model: "Passenger" });
-                                                                                            setLiftForm(false);
-                                                                                              }
+                                                  
+async function addLift(e) {
+  e.preventDefault();
+
+  if (!newLift.customer.trim() || !newLift.location.trim()) {
+    return;
+  }
+
+  if (!supabase) {
+    alert("Database is not configured.");
+    return;
+  }
+
+  const { data, error } = await supabase
+    .from("lifts")
+    .insert({
+      lift_code: `LFT-${String(Date.now()).slice(-6)}`,
+      building_name: newLift.customer.trim(),
+      location_details: newLift.location.trim(),
+      lift_type: newLift.model,
+      status: "Active",
+    })
+    .select()
+    .single();
+
+  if (error) {
+    alert("Could not save lift: " + error.message);
+    return;
+  }
+
+  setLifts((previous) => [
+    {
+      id: data.lift_code,
+      customer: data.building_name,
+      location: data.location_details || "",
+      model: data.lift_type,
+      status: data.status,
+      dbId: data.id,
+    },
+    ...previous,
+  ]);
+
+  setNewLift({
+    customer: "",
+    location: "",
+    model: "Passenger",
+  });
+
+  setLiftForm(false);
+}
+
 
                                                                                                 function addJob(e) {
                                                                                                     e.preventDefault();
