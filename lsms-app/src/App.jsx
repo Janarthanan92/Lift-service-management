@@ -85,7 +85,7 @@ const [jobs, setJobs] = useState(() => {
     return saved ? JSON.parse(saved) : initialJobs;
   } catch {
     return initialJobs;
-  }
+  
 });
 
 useEffect(() => {
