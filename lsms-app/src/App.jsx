@@ -93,8 +93,6 @@ useEffect(() => {
   };
 }, [session]);
 
-  return () => subscription.unsubscribe();
-}, []);
 
 async function handleLogin(e) {
   e.preventDefault();
