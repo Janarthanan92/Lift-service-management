@@ -73,14 +73,11 @@ async function handleLogin(e) {
   setSession(data.session);
 }
                             
-const [lifts, setLifts] = useState(() => {
-  try {
-    const saved = localStorage.getItem("lsms-lifts");
-    return saved ? JSON.parse(saved) : initialLifts;
-  } catch {
-    return initialLifts;
-  }
-});
+
+const [jobs, setJobs] = useState(initialJobs);
+const [jobsLoading, setJobsLoading] = useState(true);
+const [jobsError, setJobsError] = useState("");
+
 
 const [jobs, setJobs] = useState(() => {
   try {
