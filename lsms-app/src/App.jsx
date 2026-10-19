@@ -164,6 +164,10 @@ async function addLift(e) {
     userId: sessionData.session?.user?.id,
     sessionError: sessionError?.message,
   });
+if (sessionError || !sessionData.session?.user?.id) {
+  alert("You are not authenticated. Please sign in again.");
+  return;
+}
   if (!newLift.customer.trim() || !newLift.location.trim()) {
     return;
   }
