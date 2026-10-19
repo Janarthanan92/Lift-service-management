@@ -79,7 +79,7 @@ const [jobsError, setJobsError] = useState("");
 
 useEffect(() => {
   try {
-    localStorage.setItem("lsms-lifts", JSON.stringify(lifts);
+    localStorage.setItem("lsms-lifts", JSON.stringify(lifts));
   } catch (error) {
     console.error("Could not save lifts:", error);
   }
