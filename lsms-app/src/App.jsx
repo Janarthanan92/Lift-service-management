@@ -71,12 +71,6 @@ async function handleLogin(e) {
   }
 
   setSession(data.session);
-}
-                            
-
-const [jobs, setJobs] = useState(initialJobs);
-const [jobsLoading, setJobsLoading] = useState(true);
-const [jobsError, setJobsError] = useState(""); 
 
 
 const [jobs, setJobs] = useState(initialJobs);
