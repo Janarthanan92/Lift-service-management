@@ -79,14 +79,9 @@ const [jobsLoading, setJobsLoading] = useState(true);
 const [jobsError, setJobsError] = useState(""); 
 
 
-const [jobs, setJobs] = useState(() => {
-  try {
-    const saved = localStorage.getItem("lsms-jobs");
-    return saved ? JSON.parse(saved) : initialJobs;
-  } catch {
-    return initialJobs;
-  
-});
+const [jobs, setJobs] = useState(initialJobs);
+const [jobsLoading, setJobsLoading] = useState(true);
+const [jobsError, setJobsError] = useState("");
 
 useEffect(() => {
   try {
