@@ -137,7 +137,14 @@ useEffect(() => {
                                                   
 async function addLift(e) {
   e.preventDefault();
+  const { data: sessionData, error: sessionError } =
+    await supabase.auth.getSession();
 
+  console.log("Session check:", {
+    hasSession: !!sessionData.session,
+    userId: sessionData.session?.user?.id,
+    sessionError: sessionError?.message,
+  });
   if (!newLift.customer.trim() || !newLift.location.trim()) {
     return;
   }
