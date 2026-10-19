@@ -25,6 +25,7 @@ const initialLifts = [
                         ];
 
                         export default function App() {
+const [lifts, setLifts] = useState(initialLifts);
                           const [page, setPage] = useState("Dashboard");
 const [session, setSession] = useState(null);
 const [loginEmail, setLoginEmail] = useState("");
