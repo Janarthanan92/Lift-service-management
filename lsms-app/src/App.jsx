@@ -177,6 +177,15 @@ if (sessionError || !sessionData.session?.user?.id) {
     return;
   }
 
+const { data: authData, error: authError } =
+  await supabase.auth.getUser();
+
+console.log("LSMS auth check:", {
+  hasUser: Boolean(authData.user),
+  userId: authData.user?.id ?? null,
+  authError: authError?.message ?? null,
+});
+
   const { data, error } = await supabase
     .from("lifts")
     .insert({
