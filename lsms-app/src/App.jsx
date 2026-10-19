@@ -71,7 +71,7 @@ async function handleLogin(e) {
   }
 
   setSession(data.session);
-
+}
 
 const [jobs, setJobs] = useState(initialJobs);
 const [jobsLoading, setJobsLoading] = useState(true);
@@ -79,7 +79,7 @@ const [jobsError, setJobsError] = useState("");
 
 useEffect(() => {
   try {
-    localStorage.setItem("lsms-lifts", JSON.stringify(lifts));
+    localStorage.setItem("lsms-lifts", JSON.stringify(lifts);
   } catch (error) {
     console.error("Could not save lifts:", error);
   }
