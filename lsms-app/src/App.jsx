@@ -44,6 +44,54 @@ useEffect(() => {
     setSession(newSession);
   });
 
+useEffect(() => {
+  if (!session || !supabase) {
+    setJobsLoading(false);
+    return;
+  }
+
+  let cancelled = false;
+
+  async function loadJobs() {
+    setJobsLoading(true);
+    setJobsError("");
+
+    const { data, error } = await supabase
+      .from("jobs")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (cancelled) return;
+
+    if (error) {
+      setJobsError(error.message);
+      setJobsLoading(false);
+      return;
+    }
+
+    setJobs(
+      data.map((row) => ({
+        id: row.job_code,
+        lift: row.lift_code,
+        type: row.job_type,
+        technician: row.technician,
+        status: row.status,
+        scheduledDate: row.scheduled_date,
+        notes: row.notes,
+        dbId: row.id,
+      }))
+    );
+
+    setJobsLoading(false);
+  }
+
+  loadJobs();
+
+  return () => {
+    cancelled = true;
+  };
+}, [session]);
+
   return () => subscription.unsubscribe();
 }, []);
 
