@@ -1,51 +1,52 @@
-
 name: Build LSMS Android APK
 
 on:
-  workflow_dispatch:
-    push:
-        branches:
-              - main
+workflow_dispatch:
+push:
+branches:
+- main
 
-              jobs:
-                build:
-                    runs-on: ubuntu-latest
+jobs:
+build:
+runs-on: ubuntu-latest
 
-                        steps:
-                              - name: Checkout source
-                                      uses: actions/checkout@v4
+steps:
+  - name: Checkout source
+    uses: actions/checkout@v4
 
-                                            - name: Setup Node.js
-                                                    uses: actions/setup-node@v4
-                                                            with:
-                                                                      node-version: 22
+  - name: Setup Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: 22
 
-                                                                            - name: Setup Java
-                                                                                    uses: actions/setup-java@v4
-                                                                                            with:
-                                                                                                      distribution: temurin
-                                                                                                                java-version: 21
+  - name: Setup Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: temurin
+      java-version: 21
 
-                                                                                                                      - name: Build web app
-                                                                                                                              working-directory: Lsms-app
-                                                                                                                                      run: |
-                                                                                                                                                
-- run: npm install @supabase/supabase-js
-- run: npm ci
-                                                                                                                                                                    npx cap sync android
+  - name: Install dependencies
+    working-directory: lsms-app
+    run: npm ci
 
-                                                                                                                                                                          - name: Build debug APK
-                                                                                                                                                                                  working-directory: Lsms-app/android
-                                                                                                                                                                                          run: |
-                                                                                                                                                                                                    chmod +x gradlew
-                                                                                                                                                                                                              ./gradlew assembleDebug
+  - name: Build web app
+    working-directory: lsms-app
+    run: npm run build
 
-                                                                                                                                                                                                                    - name: Upload APK
-                                                                                                                                                                                                                            uses: actions/upload-artifact@v4
-                                                                                                                                                                                                                                    with:
-                                                                                                                                                                                                                                              name: LSMS-Android-APK
-                                                                                                                                                                                                                                                        path: Lsms-app/android/app/build/outputs/apk/debug/app-debug.apk
-                                                                                                                                                                                                                                                                  if-no-files-found: error
-                                                                                                                                                                                                                                                                            retention-days: 7
+  - name: Sync Capacitor
+    working-directory: lsms-app
+    run: npx cap sync android
 
-                                                                                                                                                                                                                                                                            
+  - name: Build debug APK
+    working-directory: lsms-app/android
+    run: |
+      chmod +x gradlew
+      ./gradlew assembleDebug
+
+  - name: Upload APK
+    uses: actions/upload-artifact@v4
+    with:
+      name: LSMS-Android-APK
+      path: lsms-app/android/app/build/outputs/apk/debug/app-debug.apk
+      if-no-files-found: error
+      retention-days: 7
