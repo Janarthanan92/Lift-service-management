@@ -43,7 +43,8 @@ useEffect(() => {
   } = supabase.auth.onAuthStateChange((_event, newSession) => {
     setSession(newSession);
   });
-
+  return () => subscription.unsubscribe();
+}, []);
 useEffect(() => {
   if (!session || !supabase) {
     setJobsLoading(false);
